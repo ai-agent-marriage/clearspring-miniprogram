@@ -1,0 +1,159 @@
+<!--pages/settings/settings.wxml-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="settings-header">
+    <text class="header-title">设置</text>
+    <text class="header-subtitle">个性化你的祈福体验</text>
+  </view>
+
+  <!-- 消息通知 -->
+  <view class="settings-section">
+    <view class="section-title">消息通知</view>
+    
+    <view class="setting-item card">
+      <view class="setting-content">
+        <text class="setting-label">活动通知</text>
+        <text class="setting-desc">接收放生活动提醒</text>
+      </view>
+      <switch 
+        class="setting-switch" 
+        checked="{{notifications.activity}}" 
+        bindchange="onActivityNotificationChange"
+        color="#D4B87B"
+      />
+    </view>
+
+    <view class="setting-item card">
+      <view class="setting-content">
+        <text class="setting-label">功德提醒</text>
+        <text class="setting-desc">每日功德积累提醒</text>
+      </view>
+      <switch 
+        class="setting-switch" 
+        checked="{{notifications.merit}}" 
+        bindchange="onMeritNotificationChange"
+        color="#D4B87B"
+      />
+    </view>
+
+    <view class="setting-item card">
+      <view class="setting-content">
+        <text class="setting-label">系统通知</text>
+        <text class="setting-desc">系统更新和重要通知</text>
+      </view>
+      <switch 
+        class="setting-switch" 
+        checked="{{notifications.system}}" 
+        bindchange="onSystemNotificationChange"
+        color="#D4B87B"
+      />
+    </view>
+  </view>
+
+  <!-- 隐私设置 -->
+  <view class="settings-section">
+    <view class="section-title">隐私设置</view>
+
+    <view class="setting-item card" bindtap="onPrivacyTap">
+      <view class="setting-content">
+        <text class="setting-label">隐私政策</text>
+        <text class="setting-desc">查看隐私政策详情</text>
+      </view>
+      <text class="setting-arrow">›</text>
+    </view>
+
+    <view class="setting-item card" bindtap="onAuthorizationTap">
+      <view class="setting-content">
+        <text class="setting-label">授权管理</text>
+        <text class="setting-desc">管理个人信息授权</text>
+      </view>
+      <text class="setting-arrow">›</text>
+    </view>
+
+    <view class="setting-item card" bindtap="onClearCacheTap">
+      <view class="setting-content">
+        <text class="setting-label">清除缓存</text>
+        <text class="setting-desc">已占用 {{cacheSize}}MB 存储空间</text>
+      </view>
+      <text class="setting-action-text">清理</text>
+    </view>
+  </view>
+
+  <!-- 外观设置 -->
+  <view class="settings-section">
+    <view class="section-title">外观设置</view>
+
+    <view class="setting-item card">
+      <view class="setting-content">
+        <text class="setting-label">宣纸风格</text>
+        <text class="setting-desc">使用传统宣纸纹理背景</text>
+      </view>
+      <switch 
+        class="setting-switch" 
+        checked="{{appearance.xuanPaper}}" 
+        bindchange="onXuanPaperChange"
+        color="#D4B87B"
+      />
+    </view>
+
+    <view class="setting-item card">
+      <view class="setting-content">
+        <text class="setting-label">色调风格</text>
+        <text class="setting-desc">{{appearance.themeName}}</text>
+      </view>
+      <picker 
+        class="setting-picker" 
+        mode="selector" 
+        range="{{themes}}" 
+        range-key="name"
+        value="{{themeIndex}}"
+        bindchange="onThemeChange"
+      >
+        <view class="picker-value">
+          <text>{{appearance.themeName}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 关于清如 -->
+  <view class="settings-section">
+    <view class="section-title">关于清如</view>
+
+    <view class="about-card card" bindtap="onAboutTap">
+      <view class="about-logo">
+        <text class="logo-text">清如</text>
+      </view>
+      <view class="about-info">
+        <text class="about-name">清如 ClearSpring</text>
+        <text class="about-version">版本 {{version}}</text>
+      </view>
+      <text class="setting-arrow">›</text>
+    </view>
+
+    <view class="setting-item card" bindtap="onHelpTap">
+      <view class="setting-content">
+        <text class="setting-label">使用帮助</text>
+      </view>
+      <text class="setting-arrow">›</text>
+    </view>
+
+    <view class="setting-item card" bindtap="onFeedbackTap">
+      <view class="setting-content">
+        <text class="setting-label">意见反馈</text>
+      </view>
+      <text class="setting-arrow">›</text>
+    </view>
+
+    <view class="setting-item card" bindtap="onContactTap">
+      <view class="setting-content">
+        <text class="setting-label">联系我们</text>
+      </view>
+      <text class="setting-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view class="footer-space"></view>
+</view>

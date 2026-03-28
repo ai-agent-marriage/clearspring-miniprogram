@@ -1,0 +1,201 @@
+/* pages/settings/settings.wxss */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+}
+
+/* ========== 页面标题 ========== */
+
+.settings-header {
+  text-align: center;
+  margin-bottom: var(--spacing-3);
+  padding: var(--spacing-3) 0;
+}
+
+.header-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8rpx;
+}
+
+.header-subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 设置分组 ========== */
+
+.settings-section {
+  margin-bottom: var(--spacing-3);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-1);
+}
+
+/* ========== 设置项 ========== */
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  border-radius: var(--radius-md);
+  min-height: 88rpx;
+  transition: all var(--transition-base);
+}
+
+.setting-item:active {
+  opacity: 0.8;
+}
+
+.setting-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.setting-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.setting-desc {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.setting-switch {
+  transform: scale(0.9);
+  margin-left: var(--spacing-2);
+}
+
+.setting-arrow {
+  font-size: 40rpx;
+  color: var(--text-dim);
+  line-height: 1;
+  margin-left: var(--spacing-1);
+}
+
+.setting-action-text {
+  font-size: 28rpx;
+  color: var(--gold-dim);
+  margin-left: var(--spacing-2);
+}
+
+.setting-picker {
+  display: flex;
+  align-items: center;
+}
+
+.picker-value {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: var(--text-dim);
+}
+
+.picker-arrow {
+  font-size: 32rpx;
+  margin-left: 8rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 关于卡片 ========== */
+
+.about-card {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-3);
+  background: linear-gradient(135deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  border-radius: var(--radius-lg);
+  min-height: 120rpx;
+}
+
+.about-logo {
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+}
+
+.about-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.about-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.about-version {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 底部留白 ========== */
+
+.footer-space {
+  height: var(--spacing-4);
+}
+
+/* ========== 宣纸纹理效果 ========== */
+
+.xuan-paper-mode {
+  background-image: url('/images/textures/xuan-paper.png');
+  background-size: 200rpx 200rpx;
+  background-repeat: repeat;
+}
+
+/* ========== 色调渐变主题 ========== */
+
+/* 禅意金系（默认） */
+.theme-gold {
+  --gold-main: #D4B87B;
+  --gold-dim: #6E5E00;
+}
+
+/* 青瓷系 */
+.theme-celadon {
+  --gold-main: #7BA09E;
+  --gold-dim: #4A5D5C;
+}
+
+/* 朱砂系 */
+.theme-cinnabar {
+  --gold-main: #B85C5C;
+  --gold-dim: #6E3A3A;
+}
+
+/* 墨色系 */
+.theme-ink {
+  --gold-main: #4A4A4A;
+  --gold-dim: #2A2A2A;
+}
