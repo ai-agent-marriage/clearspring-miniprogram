@@ -1,0 +1,284 @@
+/* 清如 ClearSpring - 执行者个人中心样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: var(--spacing-4);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 个人信息卡片 ========== */
+.profile-card {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-3);
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: var(--spacing-2);
+  border: 4rpx solid var(--green-main);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.nickname {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.profile-tags {
+  display: flex;
+  gap: var(--spacing-1);
+  margin-bottom: 8rpx;
+}
+
+.tag {
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-sm);
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.tag-verified {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.tag-level {
+  background: rgba(74, 93, 78, 0.1);
+  color: var(--green-main);
+}
+
+.profile-id {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  padding-top: var(--spacing-2);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--green-main);
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 资质状态 ========== */
+.qualification-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-1);
+  border-left: 6rpx solid var(--green-main);
+}
+
+.qualification-card {
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.qualification-card.verified {
+  border-left: 6rpx solid var(--success);
+}
+
+.qualification-card.pending {
+  border-left: 6rpx solid var(--warning);
+}
+
+.qualification-card.rejected {
+  border-left: 6rpx solid var(--error-soft);
+}
+
+.qual-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qual-icon {
+  font-size: 64rpx;
+  margin-right: var(--spacing-2);
+}
+
+.qual-info {
+  flex: 1;
+}
+
+.qual-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8rpx;
+}
+
+.qual-desc {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.qual-skills {
+  margin-top: var(--spacing-2);
+  padding-top: var(--spacing-2);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.skills-label {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.skills-value {
+  font-size: 26rpx;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* ========== 功能菜单 ========== */
+.menu-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.menu-group {
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.menu-item:last-of-type {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background: rgba(74, 93, 78, 0.05);
+}
+
+.menu-icon {
+  font-size: 44rpx;
+  margin-right: var(--spacing-2);
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: var(--text-dim);
+}
+
+.menu-badge {
+  position: absolute;
+  top: 50%;
+  right: 48rpx;
+  transform: translateY(-50%);
+  min-width: 36rpx;
+  height: 36rpx;
+  background: var(--error-soft);
+  color: #fff;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  padding: 0 8rpx;
+}
+
+/* ========== 切换身份 ========== */
+.switch-role-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.btn-switch {
+  width: 100%;
+  min-height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.btn-switch:active {
+  opacity: 0.8;
+}
+
+.switch-icon {
+  font-size: 36rpx;
+  margin-right: var(--spacing-1);
+}
+
+/* ========== 退出登录 ========== */
+.logout-section {
+  text-align: center;
+  padding: var(--spacing-2);
+}
+
+.logout-text {
+  font-size: 28rpx;
+  color: var(--text-dim);
+  padding: var(--spacing-2);
+}
+
+.logout-text:active {
+  color: var(--error-soft);
+}

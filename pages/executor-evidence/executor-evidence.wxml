@@ -1,0 +1,141 @@
+<!-- 清如 ClearSpring - 证据提交页 -->
+<view class="container">
+  <!-- 任务信息 -->
+  <view class="task-info-section glass">
+    <text class="task-title">{{taskInfo.title}}</text>
+    <view class="task-meta">
+      <text class="task-id">任务 ID: {{taskInfo.id}}</text>
+      <text class="task-date">{{taskInfo.date}}</text>
+    </view>
+  </view>
+
+  <!-- 上传区域 -->
+  <view class="upload-section">
+    <view class="section-title">上传凭证</view>
+    
+    <!-- 照片凭证 -->
+    <view class="upload-group">
+      <view class="upload-group-header">
+        <text class="group-title">现场照片 <text class="required">*</text></text>
+        <text class="group-count">{{photos.length}}/9</text>
+      </view>
+      
+      <view class="upload-grid">
+        <view 
+          wx:for="{{photos}}" 
+          wx:key="*this" 
+          class="photo-item"
+          bindtap="onPreviewPhoto"
+          data-index="{{index}}"
+        >
+          <image class="photo-image" src="{{item}}" mode="aspectFill" />
+          <view class="photo-delete" catchtap="onDeletePhoto" data-index="{{index}}">
+            <text class="delete-icon">×</text>
+          </view>
+          <view class="photo-status {{item.uploadStatus}}" wx:if="{{item.uploadStatus}}">
+            <text wx:if="{{item.uploadStatus === 'uploading'}}">⏳</text>
+            <text wx:if="{{item.uploadStatus === 'success'}}">✓</text>
+            <text wx:if="{{item.uploadStatus === 'failed'}}">!</text>
+          </view>
+        </view>
+        
+        <view 
+          wx:if="{{photos.length < 9}}" 
+          class="upload-btn"
+          bindtap="onAddPhoto"
+        >
+          <text class="upload-icon">+</text>
+          <text class="upload-text">添加照片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 视频凭证 -->
+    <view class="upload-group">
+      <view class="upload-group-header">
+        <text class="group-title">现场视频</text>
+        <text class="group-count">{{videos.length}}/3</text>
+      </view>
+      
+      <view class="video-list">
+        <view 
+          wx:for="{{videos}}" 
+          wx:key="*this" 
+          class="video-item"
+          bindtap="onPreviewVideo"
+          data-index="{{index}}"
+        >
+          <view class="video-thumbnail">
+            <image class="thumbnail-image" src="{{item.thumb}}" mode="aspectFill" />
+            <text class="video-duration">{{item.duration}}</text>
+          </view>
+          <view class="video-info">
+            <text class="video-name">{{item.name}}</text>
+            <text class="video-size">{{item.size}}</text>
+          </view>
+          <view class="video-delete" catchtap="onDeleteVideo" data-index="{{index}}">
+            <text class="delete-icon">×</text>
+          </view>
+          <view class="video-progress" wx:if="{{item.uploading}}">
+            <view class="progress-bar" style="width: {{item.progress}}%"></view>
+          </view>
+        </view>
+        
+        <view 
+          wx:if="{{videos.length < 3}}" 
+          class="upload-btn upload-btn-video"
+          bindtap="onAddVideo"
+        >
+          <text class="upload-icon">+</text>
+          <text class="upload-text">添加视频</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 文字说明 -->
+    <view class="upload-group">
+      <view class="upload-group-header">
+        <text class="group-title">情况说明</text>
+      </view>
+      
+      <textarea 
+        class="description-input"
+        placeholder="请详细描述服务过程和内容..."
+        value="{{description}}"
+        bindinput="onDescriptionInput"
+        maxlength="500"
+        auto-height
+      />
+      <text class="char-count">{{description.length}}/500</text>
+    </view>
+  </view>
+
+  <!-- 位置信息 -->
+  <view class="location-section glass">
+    <view class="location-header">
+      <text class="location-icon">📍</text>
+      <text class="location-title">服务位置</text>
+    </view>
+    <text class="location-address">{{location.address || '未获取位置信息'}}</text>
+    <button class="btn btn-outline btn-small" bindtap="onGetLocation">重新获取位置</button>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <view class="submit-info">
+      <text class="info-text">提交后无法修改，请确认信息准确</text>
+    </view>
+    <button 
+      class="btn btn-green btn-submit {{canSubmit ? '' : 'disabled'}}"
+      disabled="{{!canSubmit || submitting}}"
+      bindtap="onSubmit"
+    >
+      {{submitting ? '提交中...' : '提交凭证'}}
+    </button>
+  </view>
+
+  <!-- 上传失败提示 -->
+  <view wx:if="{{failedCount > 0}}" class="failed-toast">
+    <text class="failed-text">有 {{failedCount}} 个文件上传失败，点击重试</text>
+  </view>
+</view>

@@ -1,0 +1,122 @@
+<!-- 清如 ClearSpring - 执行者个人中心 -->
+<view class="container">
+  <!-- 个人信息卡片 -->
+  <view class="profile-card glass">
+    <view class="profile-header">
+      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
+      <view class="profile-info">
+        <text class="nickname">{{userInfo.nickname}}</text>
+        <view class="profile-tags">
+          <text class="tag tag-verified" wx:if="{{userInfo.verified}}">✓ 已认证</text>
+          <text class="tag tag-level">Lv.{{userInfo.level}}</text>
+        </view>
+        <text class="profile-id">ID: {{userInfo.id}}</text>
+      </view>
+    </view>
+    
+    <view class="profile-stats">
+      <view class="stat-item">
+        <text class="stat-value">{{stats.serviceDays}}</text>
+        <text class="stat-label">服务天数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalOrders}}</text>
+        <text class="stat-label">总订单数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalIncome}}</text>
+        <text class="stat-label">累计收入 (元)</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 资质状态中心 -->
+  <view class="qualification-section">
+    <view class="section-title">资质状态</view>
+    
+    <view class="qualification-card glass {{qualificationStatus}}">
+      <view class="qual-header">
+        <view class="qual-icon">
+          <text wx:if="{{qualificationStatus === 'verified'}}">✅</text>
+          <text wx:if="{{qualificationStatus === 'pending'}}">⏳</text>
+          <text wx:if="{{qualificationStatus === 'rejected'}}">❌</text>
+        </view>
+        <view class="qual-info">
+          <text class="qual-title">{{qualificationTitle}}</text>
+          <text class="qual-desc">{{qualificationDesc}}</text>
+        </view>
+        <button wx:if="{{qualificationStatus === 'pending' || qualificationStatus === 'rejected'}}" class="btn btn-outline btn-small" bindtap="onUpdateQualification">
+          {{qualificationStatus === 'rejected' ? '重新提交' : '查看进度'}}
+        </button>
+      </view>
+      
+      <view wx:if="{{qualificationStatus === 'verified'}}" class="qual-skills">
+        <text class="skills-label">擅长领域：</text>
+        <text class="skills-value">{{userInfo.skills}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-group glass">
+      <view class="menu-item" bindtap="onMenuTap" data-action="order">
+        <text class="menu-icon">📋</text>
+        <text class="menu-text">我的订单</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" bindtap="onMenuTap" data-action="wallet">
+        <text class="menu-icon">💰</text>
+        <text class="menu-text">我的钱包</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" bindtap="onMenuTap" data-action="notice">
+        <text class="menu-icon">📢</text>
+        <text class="menu-text">消息通知</text>
+        <view class="menu-badge" wx:if="{{unreadCount > 0}}">{{unreadCount}}</view>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" bindtap="onMenuTap" data-action="help">
+        <text class="menu-icon">❓</text>
+        <text class="menu-text">帮助中心</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="menu-group glass">
+      <view class="menu-item" bindtap="onMenuTap" data-action="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">设置</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" bindtap="onMenuTap" data-action="feedback">
+        <text class="menu-icon">💬</text>
+        <text class="menu-text">意见反馈</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" bindtap="onMenuTap" data-action="about">
+        <text class="menu-icon">ℹ️</text>
+        <text class="menu-text">关于我们</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 切换身份按钮 -->
+  <view class="switch-role-section">
+    <button class="btn btn-switch" bindtap="onSwitchRole">
+      <text class="switch-icon">🔄</text>
+      <text class="switch-text">切换到祈福者端</text>
+    </button>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-section">
+    <text class="logout-text" bindtap="onLogout">退出登录</text>
+  </view>
+</view>

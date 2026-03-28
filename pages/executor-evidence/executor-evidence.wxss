@@ -1,0 +1,365 @@
+/* 清如 ClearSpring - 证据提交页样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: 200rpx;
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 任务信息 ========== */
+.task-info-section {
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  border-left: 6rpx solid var(--green-main);
+}
+
+.task-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-id,
+.task-date {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 上传区域 ========== */
+.upload-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-1);
+  border-left: 6rpx solid var(--green-main);
+}
+
+.upload-group {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.upload-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.group-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.required {
+  color: var(--error-soft);
+}
+
+.group-count {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* 照片网格 */
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-1);
+}
+
+.photo-item {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.photo-image {
+  width: 100%;
+  height: 100%;
+}
+
+.photo-delete {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.photo-status {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.photo-status.uploading {
+  background: rgba(255, 154, 68, 0.8);
+}
+
+.photo-status.success {
+  background: rgba(0, 138, 23, 0.8);
+}
+
+.photo-status.failed {
+  background: rgba(186, 26, 26, 0.8);
+}
+
+.upload-btn {
+  aspect-ratio: 1;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx dashed var(--green-main);
+}
+
+.upload-btn:active {
+  opacity: 0.7;
+}
+
+.upload-icon {
+  font-size: 48rpx;
+  color: var(--green-main);
+  margin-bottom: 8rpx;
+}
+
+.upload-text {
+  font-size: 24rpx;
+  color: var(--green-main);
+}
+
+.upload-btn-video {
+  aspect-ratio: 16/9;
+}
+
+/* 视频列表 */
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.video-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-1);
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 200rpx;
+  height: 120rpx;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-right: var(--spacing-1);
+}
+
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 8rpx;
+  right: 8rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4rpx 8rpx;
+  border-radius: 4rpx;
+}
+
+.video-info {
+  flex: 1;
+}
+
+.video-name {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-main);
+  margin-bottom: 4rpx;
+}
+
+.video-size {
+  display: block;
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.video-delete {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-1);
+}
+
+.video-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: rgba(74, 93, 78, 0.2);
+  border-radius: 2rpx;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--green-main);
+  transition: width var(--transition-base);
+}
+
+/* 文字说明 */
+.description-input {
+  width: 100%;
+  min-height: 200rpx;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: var(--text-dim);
+  margin-top: var(--spacing-1);
+}
+
+/* ========== 位置信息 ========== */
+.location-section {
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.location-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-1);
+}
+
+.location-icon {
+  font-size: 32rpx;
+  margin-right: var(--spacing-1);
+}
+
+.location-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.location-address {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-2);
+  line-height: 1.5;
+}
+
+/* ========== 提交区域 ========== */
+.submit-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-2);
+  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.submit-info {
+  margin-bottom: var(--spacing-2);
+}
+
+.info-text {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.btn-submit {
+  width: 100%;
+}
+
+.btn-submit.disabled {
+  opacity: 0.4;
+}
+
+/* ========== 失败提示 ========== */
+.failed-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(186, 26, 26, 0.9);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  z-index: 1000;
+}
+
+.failed-text {
+  font-size: 28rpx;
+  color: #fff;
+}

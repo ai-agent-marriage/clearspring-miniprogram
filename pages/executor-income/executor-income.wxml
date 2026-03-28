@@ -1,0 +1,123 @@
+<!-- 清如 ClearSpring - 收入管理页 -->
+<view class="container">
+  <!-- 总收入卡片 -->
+  <view class="income-card glass">
+    <text class="income-label">总收入 (元)</text>
+    <text class="income-amount">{{totalIncome}}</text>
+    <view class="income-stats">
+      <view class="stat-item">
+        <text class="stat-value">{{pendingAmount}}</text>
+        <text class="stat-label">待结算</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{withdrawableAmount}}</text>
+        <text class="stat-label">可提现</text>
+      </view>
+    </view>
+    <button 
+      class="btn btn-green btn-withdraw {{withdrawableAmount > 0 ? '' : 'disabled'}}"
+      disabled="{{withdrawableAmount <= 0}}"
+      bindtap="onWithdraw"
+    >
+      提现
+    </button>
+  </view>
+
+  <!-- 数据概览 -->
+  <view class="overview-section">
+    <view class="section-tabs">
+      <view 
+        class="tab-item {{currentTab === 'week' ? 'active' : ''}}"
+        bindtap="onSwitchTab"
+        data-tab="week"
+      >
+        本周
+      </view>
+      <view 
+        class="tab-item {{currentTab === 'month' ? 'active' : ''}}"
+        bindtap="onSwitchTab"
+        data-tab="month"
+      >
+        本月
+      </view>
+      <view 
+        class="tab-item {{currentTab === 'all' ? 'active' : ''}}"
+        bindtap="onSwitchTab"
+        data-tab="all"
+      >
+        全部
+      </view>
+    </view>
+
+    <view class="overview-grid glass">
+      <view class="overview-item">
+        <text class="overview-value">{{overview.completed}}</text>
+        <text class="overview-label">完成单数</text>
+      </view>
+      <view class="overview-item">
+        <text class="overview-value">{{overview.hours}}</text>
+        <text class="overview-label">服务时长 (h)</text>
+      </view>
+      <view class="overview-item">
+        <text class="overview-value">{{overview.rating}}</text>
+        <text class="overview-label">平均评分</text>
+      </view>
+      <view class="overview-item">
+        <text class="overview-value">{{overview.rate}}</text>
+        <text class="overview-label">好评率</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 财务明细 -->
+  <view class="detail-section">
+    <view class="section-header">
+      <text class="section-title">财务明细</text>
+      <view class="filter-actions">
+        <text class="filter-text" bindtap="onFilterType">类型 ▼</text>
+        <text class="filter-text" bindtap="onFilterStatus">状态 ▼</text>
+      </view>
+    </view>
+
+    <view class="detail-list">
+      <view wx:if="{{transactions.length === 0}}" class="empty-state">
+        <text class="empty-icon">📊</text>
+        <text class="empty-text">暂无交易记录</text>
+      </view>
+
+      <view 
+        wx:for="{{transactions}}" 
+        wx:key="id" 
+        class="transaction-item glass"
+        bindtap="onTransactionDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="transaction-left">
+          <view class="transaction-icon {{item.type}}">
+            <text wx:if="{{item.type === 'income'}}">💰</text>
+            <text wx:if="{{item.type === 'withdraw'}}">💳</text>
+            <text wx:if="{{item.type === 'refund'}}">↩️</text>
+          </view>
+          <view class="transaction-info">
+            <text class="transaction-title">{{item.title}}</text>
+            <text class="transaction-time">{{item.time}}</text>
+          </view>
+        </view>
+        <view class="transaction-right">
+          <text class="transaction-amount {{item.amountClass}}">{{item.amount}}</text>
+          <text class="transaction-status {{item.status}}">{{item.statusText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <view wx:if="{{noMore}}" class="no-more-state">
+    <text class="no-more-text">— 没有更多了 —</text>
+  </view>
+</view>
