@@ -1,0 +1,343 @@
+/* 清如 ClearSpring - 执行者审核状态页样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: var(--spacing-4);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 状态卡片 ========== */
+.status-card {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.status-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64rpx;
+  margin-right: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+.status-icon.pending {
+  background: linear-gradient(135deg, #FFA726 0%, #FB8C00 100%);
+}
+
+.status-icon.approved {
+  background: linear-gradient(135deg, var(--green-main) 0%, var(--success) 100%);
+}
+
+.status-icon.rejected,
+.status-icon.need 补充 {
+  background: linear-gradient(135deg, var(--error-soft) 0%, #D32F2F 100%);
+}
+
+.status-info {
+  flex: 1;
+}
+
+.status-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.status-desc {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 进度条 ========== */
+.progress-section {
+  margin-bottom: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.progress-bar {
+  padding: var(--spacing-2) 0;
+}
+
+.progress-track {
+  height: 8rpx;
+  background: rgba(74, 93, 78, 0.1);
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: var(--spacing-3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-main) 0%, var(--success) 100%);
+  border-radius: 4rpx;
+  transition: width var(--transition-slow);
+}
+
+.progress-fill.completed {
+  background: linear-gradient(90deg, var(--success) 0%, var(--green-main) 100%);
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.step-dot {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: rgba(74, 93, 78, 0.2);
+  margin-bottom: var(--spacing-1);
+  transition: all var(--transition-base);
+}
+
+.progress-step.active .step-dot {
+  background: var(--green-main);
+  transform: scale(1.2);
+}
+
+.step-text {
+  font-size: 24rpx;
+  color: var(--text-dim);
+  transition: color var(--transition-base);
+}
+
+.progress-step.active .step-text {
+  color: var(--green-main);
+  font-weight: 500;
+}
+
+/* ========== 审核详情 ========== */
+.detail-section {
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  border-left: 6rpx solid var(--error-soft);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+  padding-bottom: var(--spacing-1);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.detail-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.detail-time {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.detail-content {
+  padding: var(--spacing-2);
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-2);
+}
+
+.detail-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.detail-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.detail-actions .btn {
+  flex: 1;
+}
+
+/* ========== 审核通过 ========== */
+.success-section {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 100rpx;
+  margin-bottom: var(--spacing-2);
+}
+
+.success-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.success-desc {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-3);
+}
+
+.btn-start {
+  width: 100%;
+}
+
+/* ========== 审核中 ========== */
+.pending-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.pending-tip {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2);
+  background: rgba(74, 93, 78, 0.1);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-2);
+}
+
+.tip-icon {
+  font-size: 36rpx;
+  margin-right: var(--spacing-1);
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  flex: 1;
+}
+
+.pending-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.pending-actions .btn {
+  flex: 1;
+}
+
+.btn-outline {
+  min-height: 88rpx;
+  background: transparent;
+  border: 2rpx solid var(--green-main);
+  color: var(--green-main);
+  border-radius: var(--radius-md);
+  font-size: 28rpx;
+}
+
+.btn-outline:active {
+  background: rgba(74, 93, 78, 0.1);
+}
+
+/* ========== 时间线 ========== */
+.timeline-section {
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.timeline-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-1);
+  border-left: 6rpx solid var(--green-main);
+}
+
+.timeline-list {
+  padding-left: var(--spacing-1);
+}
+
+.timeline-item {
+  display: flex;
+  padding: var(--spacing-2) 0;
+  position: relative;
+}
+
+.timeline-item:last-of-type {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: var(--green-main);
+  margin-right: var(--spacing-2);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rpx;
+  height: calc(100% + var(--spacing-2));
+  background: rgba(74, 93, 78, 0.2);
+}
+
+.timeline-item:last-of-type .timeline-dot::after {
+  display: none;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-event {
+  display: block;
+  font-size: 28rpx;
+  color: var(--text-main);
+  margin-bottom: 4rpx;
+}
+
+.timeline-time {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-dim);
+}

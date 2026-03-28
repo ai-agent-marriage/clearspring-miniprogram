@@ -1,0 +1,253 @@
+/* 清如 ClearSpring - 执行者资质审核页样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: 200rpx;
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--spacing-3) 0;
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 表单区域 ========== */
+.form-section {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-3);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.form-group:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.form-group-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-1);
+  border-left: 6rpx solid var(--green-main);
+}
+
+/* ========== 表单项 ========== */
+.form-item {
+  margin-bottom: var(--spacing-2);
+}
+
+.form-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-1);
+  font-weight: 500;
+}
+
+.required {
+  color: var(--error-soft);
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  padding: 0 var(--spacing-2);
+  font-size: 28rpx;
+  color: var(--text-main);
+  box-sizing: border-box;
+  border: 2rpx solid transparent;
+  transition: all var(--transition-base);
+}
+
+.form-input:focus {
+  border-color: var(--green-main);
+  background: #fff;
+}
+
+/* ========== 上传区域 ========== */
+.upload-area {
+  width: 100%;
+  height: 240rpx;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.upload-area:active {
+  opacity: 0.8;
+}
+
+.upload-area-multi {
+  height: 180rpx;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon {
+  font-size: 64rpx;
+  color: var(--green-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.upload-text {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.upload-image {
+  width: 100%;
+  height: 100%;
+}
+
+.upload-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1);
+}
+
+.upload-image-small {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: var(--radius-sm);
+}
+
+/* ========== 选择器 ========== */
+.picker {
+  width: 100%;
+  height: 88rpx;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-2);
+  box-sizing: border-box;
+}
+
+.picker-value {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.picker-value::after {
+  content: '';
+  position: absolute;
+  right: var(--spacing-2);
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 10rpx solid var(--text-dim);
+}
+
+/* ========== 服务协议 ========== */
+.agreement-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-1) 0;
+}
+
+.checkbox {
+  width: 44rpx;
+  height: 44rpx;
+  border: 2rpx solid var(--green-main);
+  border-radius: 8rpx;
+  margin-right: var(--spacing-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.checkbox.checked {
+  background: var(--green-main);
+}
+
+.checkmark {
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.agreement-text {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.agreement-link {
+  font-size: 26rpx;
+  color: var(--green-main);
+  text-decoration: underline;
+}
+
+/* ========== 提交区域 ========== */
+.submit-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.btn-submit {
+  width: 100%;
+  margin-bottom: var(--spacing-1);
+}
+
+.btn-submit.disabled {
+  opacity: 0.4;
+}
+
+.submit-tip {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
