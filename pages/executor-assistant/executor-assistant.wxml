@@ -1,0 +1,119 @@
+<!-- 清如 ClearSpring - 任务助手页 -->
+<view class="container">
+  <!-- 当前任务状态 -->
+  <view class="current-task-section glass">
+    <view class="task-status-header">
+      <text class="status-label">当前任务状态</text>
+      <text class="status-value {{taskStatusClass}}">{{taskStatusText}}</text>
+    </view>
+    
+    <view wx:if="{{currentTask}}" class="task-progress">
+      <view class="progress-info">
+        <text class="task-name">{{currentTask.name}}</text>
+        <text class="task-progress-text">{{currentTask.progress}}%</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{currentTask.progress}}%"></view>
+      </view>
+      <view class="task-actions">
+        <button class="btn btn-outline btn-small" bindtap="onViewTaskDetail">查看详情</button>
+        <button class="btn btn-green btn-small" bindtap="onContinueTask">继续任务</button>
+      </view>
+    </view>
+    
+    <view wx:else class="no-task">
+      <text class="no-task-icon">📋</text>
+      <text class="no-task-text">暂无进行中任务</text>
+      <button class="btn btn-green" bindtap="onGoToOrderHall">去抢单</button>
+    </view>
+  </view>
+
+  <!-- 快捷导航 -->
+  <view class="navigation-section">
+    <view class="section-title">快捷导航</view>
+    
+    <view class="nav-grid">
+      <view class="nav-item glass" bindtap="onNavigate" data-page="qualification">
+        <view class="nav-icon">📄</view>
+        <text class="nav-text">资质管理</text>
+      </view>
+      
+      <view class="nav-item glass" bindtap="onNavigate" data-page="tasks">
+        <view class="nav-icon">✅</view>
+        <text class="nav-text">我的任务</text>
+      </view>
+      
+      <view class="nav-item glass" bindtap="onNavigate" data-page="income">
+        <view class="nav-icon">💰</view>
+        <text class="nav-text">收入管理</text>
+      </view>
+      
+      <view class="nav-item glass" bindtap="onNavigate" data-page="profile">
+        <view class="nav-icon">👤</view>
+        <text class="nav-text">个人中心</text>
+      </view>
+      
+      <view class="nav-item glass" bindtap="onNavigate" data-page="guide">
+        <view class="nav-icon">📖</view>
+        <text class="nav-text">操作指南</text>
+      </view>
+      
+      <view class="nav-item glass" bindtap="onNavigate" data-page="service">
+        <view class="nav-icon">🎧</view>
+        <text class="nav-text">联系客服</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常用功能 -->
+  <view class="quick-functions-section">
+    <view class="section-title">常用功能</view>
+    
+    <view class="function-list">
+      <view class="function-item glass" bindtap="onFunction" data-func="scan">
+        <view class="function-icon">📷</view>
+        <view class="function-info">
+          <text class="function-name">扫码签到</text>
+          <text class="function-desc">到达服务地点后扫码</text>
+        </view>
+        <text class="function-arrow">›</text>
+      </view>
+      
+      <view class="function-item glass" bindtap="onFunction" data-func="upload">
+        <view class="function-icon">📤</view>
+        <view class="function-info">
+          <text class="function-name">上传凭证</text>
+          <text class="function-desc">提交服务完成证明</text>
+        </view>
+        <text class="function-arrow">›</text>
+      </view>
+      
+      <view class="function-item glass" bindtap="onFunction" data-func="report">
+        <view class="function-icon">📊</view>
+        <view class="function-info">
+          <text class="function-name">服务报告</text>
+          <text class="function-desc">填写服务过程记录</text>
+        </view>
+        <text class="function-arrow">›</text>
+      </view>
+      
+      <view class="function-item glass" bindtap="onFunction" data-func="feedback">
+        <view class="function-icon">💬</view>
+        <view class="function-info">
+          <text class="function-name">问题反馈</text>
+          <text class="function-desc">遇到问题？告诉我们</text>
+        </view>
+        <text class="function-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提示信息 -->
+  <view class="tips-section glass" wx:if="{{tips}}">
+    <view class="tips-header">
+      <text class="tips-icon">💡</text>
+      <text class="tips-title">温馨提示</text>
+    </view>
+    <text class="tips-content">{{tips}}</text>
+  </view>
+</view>
