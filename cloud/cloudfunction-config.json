@@ -1,0 +1,96 @@
+{
+  "description": "清如 ClearSpring 小程序 - 云开发环境配置",
+  "cloudBase": {
+    "envId": "clearspring-prod",
+    "region": "ap-guangzhou"
+  },
+  "functions": {
+    "login": {
+      "name": "login",
+      "timeout": 30,
+      "envVariables": {}
+    },
+    "createOrder": {
+      "name": "createOrder",
+      "timeout": 60,
+      "envVariables": {}
+    },
+    "grabOrder": {
+      "name": "grabOrder",
+      "timeout": 30,
+      "envVariables": {},
+      "description": "抢单接口（带分布式锁）"
+    },
+    "uploadEvidence": {
+      "name": "uploadEvidence",
+      "timeout": 300,
+      "envVariables": {},
+      "description": "证据上传（支持断点续传）"
+    },
+    "generateCertificate": {
+      "name": "generateCertificate",
+      "timeout": 120,
+      "envVariables": {},
+      "description": "功德证书异步生成（Canvas）"
+    },
+    "processPayment": {
+      "name": "processPayment",
+      "timeout": 60,
+      "envVariables": {},
+      "description": "支付分账处理"
+    },
+    "sendNotification": {
+      "name": "sendNotification",
+      "timeout": 30,
+      "envVariables": {},
+      "description": "服务通知推送"
+    },
+    "synthesizeWatermark": {
+      "name": "synthesizeWatermark",
+      "timeout": 180,
+      "envVariables": {},
+      "description": "视频水印后端合成（GPS+ 时间 + 任务 ID）"
+    }
+  },
+  "database": {
+    "collections": [
+      {
+        "name": "users",
+        "description": "用户表（祈福者/执行者/管理员）",
+        "indexes": ["openid", "role", "phone"]
+      },
+      {
+        "name": "orders",
+        "description": "订单表（放生任务）",
+        "indexes": ["orderId", "prayerId", "executorId", "status"]
+      },
+      {
+        "name": "evidence",
+        "description": "证据表（视频/照片）",
+        "indexes": ["orderId", "executorId", "uploadTime"]
+      },
+      {
+        "name": "certificates",
+        "description": "功德证书表",
+        "indexes": ["orderId", "prayerId", "generateTime"]
+      },
+      {
+        "name": "transactions",
+        "description": "交易/分账表",
+        "indexes": ["orderId", "transactionId", "status"]
+      },
+      {
+        "name": "audit_logs",
+        "description": "审计日志表（管理端操作留痕）",
+        "indexes": ["operatorId", "operationType", "timestamp"]
+      }
+    ]
+  },
+  "storage": {
+    "paths": [
+      "evidence/{orderId}/{filename}",
+      "certificates/{orderId}/{filename}",
+      "avatars/{userId}/{filename}"
+    ]
+  }
+}

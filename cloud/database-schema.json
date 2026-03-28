@@ -1,0 +1,264 @@
+{
+  "version": "1.0.0",
+  "description": "清如 ClearSpring 数据库设计文档（V4.0 规范）"
+}
+
+// ========================================
+// 1. 用户表 (users)
+// ========================================
+{
+  "_id": "自动生成",
+  "_openid": "用户 OpenID",
+  "role": "prayer | executor | admin",  // 角色：祈福者/执行者/管理员
+  "userInfo": {
+    "nickName": "昵称",
+    "avatarUrl": "头像 URL",
+    "gender": 0 | 1 | 2,  // 0-未知 1-男 2-女
+    "phone": "138****1234",  // 脱敏手机号
+    "encryptedPhone": "加密原始手机号"  // 仅后端可访问
+  },
+  "executorProfile": {  // 仅执行者有
+    "realName": "张*",  // 脱敏姓名
+    "idCard": "4401********1234",  // 脱敏身份证号
+    "idCardEncrypted": "加密原始身份证",  // 仅后端可访问
+    "serviceAreas": ["广州市", "深圳市"],  // 服务区域
+    "qualificationStatus": "pending | approved | rejected",  // 审核状态
+    "qualificationDocs": ["cloudfile://xxx", "cloudfile://yyy"],  // 资质证明
+    "rejectionReason": "",  // 驳回原因
+    "rating": 4.8,  // 评分
+    "totalOrders": 127,  // 累计接单数
+    "totalIncome": 12345.67  // 累计收入
+  },
+  "prayerProfile": {  // 仅祈福者有
+    "totalOrders": 52,  // 累计放生次数
+    "totalMerit": 1080,  // 总积福
+    "speciesCount": 8  // 物种数
+  },
+  "createdAt": 1711627200000,
+  "updatedAt": 1711627200000
+}
+
+// ========================================
+// 2. 订单表 (orders)
+// ========================================
+{
+  "_id": "自动生成",
+  "_openid": "创建者 OpenID",
+  "orderId": "ORD20260328001",  // 订单号（唯一）
+  "prayerId": "祈福者 OpenID",
+  "prayerInfo": {
+    "nickName": "昵称",
+    "avatarUrl": "头像",
+    "phone": "138****1234"
+  },
+  "executorId": "执行者 OpenID | null",  // 抢单后填充
+  "executorInfo": {
+    "nickName": "昵称",
+    "avatarUrl": "头像",
+    "phone": "138****1234",
+    "rating": 4.8
+  },
+  "status": "pending | grabbed | executing | submitted | confirmed | completed | cancelled",
+  "species": {
+    "id": "species_001",
+    "name": "鲫鱼",
+    "category": "鱼类",
+    "ecologicalNote": "本地物种，适合淡水放生"
+  },
+  "location": {
+    "province": "广东省",
+    "city": "广州市",
+    "district": "白云区",
+    "address": "白云山淡水湖",
+    "latitude": 23.1234,
+    "longitude": 113.2345,
+    "verified": true  // 地理位置校验通过
+  },
+  "wish": "愿家人平安健康",  // 心愿
+  "quantity": 100,  // 数量（条/只）
+  "guidePrice": 299.00,  // 系统指导价
+  "actualPrice": 299.00,  // 实际支付
+  "payment": {
+    "transactionId": "微信支付流水号",
+    "payTime": 1711627200000,
+    "status": "paid | refunded | divided"
+  },
+  "timeline": [
+    {
+      "stage": "created",
+      "time": 1711627200000,
+      "note": "订单创建"
+    },
+    {
+      "stage": "grabbed",
+      "time": 1711627500000,
+      "note": "执行者已接单"
+    },
+    {
+      "stage": "executing",
+      "time": 1711628000000,
+      "note": "执行者已出发"
+    },
+    {
+      "stage": "arrived",
+      "time": 1711629000000,
+      "note": "执行者已到达"
+    },
+    {
+      "stage": "submitted",
+      "time": 1711630000000,
+      "note": "证据已提交"
+    },
+    {
+      "stage": "confirmed",
+      "time": 1711631000000,
+      "note": "祈福者已确认"
+    },
+    {
+      "stage": "completed",
+      "time": 1711632000000,
+      "note": "订单完成"
+    }
+  ],
+  "evidence": ["evidence_id_1", "evidence_id_2"],  // 关联证据
+  "certificateId": "certificate_id",  // 关联证书
+  "createdAt": 1711627200000,
+  "updatedAt": 1711632000000
+}
+
+// ========================================
+// 3. 证据表 (evidence)
+// ========================================
+{
+  "_id": "自动生成",
+  "_openid": "执行者 OpenID",
+  "orderId": "ORD20260328001",
+  "executorId": "执行者 OpenID",
+  "type": "video | photo",
+  "fileId": "cloudfile://xxx",  // 云存储文件 ID
+  "fileUrl": "https://xxx",  // 访问 URL
+  "thumbnailUrl": "https://xxx_thumb",  // 缩略图
+  "duration": 15.5,  // 视频时长（秒）
+  "size": 5242880,  // 文件大小（字节）
+  "watermark": {
+    "enabled": true,
+    "gps": "23.1234, 113.2345",
+    "timestamp": 1711630000000,
+    "taskId": "ORD20260328001",
+    "synthesizedBy": "cloudFunction",  // 后端合成标识
+    "previewOnly": true  // 前端仅预览，实际水印已烧录
+  },
+  "metadata": {
+    "captureTime": 1711630000000,
+    "captureLocation": {
+      "latitude": 23.1234,
+      "longitude": 113.2345,
+      "accuracy": 10  // GPS 精度（米）
+    },
+    "device": "iPhone 15 Pro"
+  },
+  "status": "uploaded | verified | rejected",
+  "rejectionReason": "",
+  "uploadedAt": 1711630000000
+}
+
+// ========================================
+// 4. 证书表 (certificates)
+// ========================================
+{
+  "_id": "自动生成",
+  "_openid": "祈福者 OpenID",
+  "orderId": "ORD20260328001",
+  "prayerId": "祈福者 OpenID",
+  "certificateNo": "CERT20260328001",  // 证书编号
+  "species": "鲫鱼",
+  "quantity": 100,
+  "location": "广州市白云区白云山淡水湖",
+  "date": "2026 年 3 月 28 日",
+  "lunarDate": "农历二月初九",
+  "goodDay": {
+    "suit": ["放生", "祈福", "祭祀"],
+    "avoid": ["杀生", "争吵"]
+  },
+  "wish": "愿家人平安健康",
+  "meritPoints": 108,  // 功德值
+  "imageUrl": "cloudfile://certificate_xxx",  // 证书图片（Canvas 生成）
+  "thumbnailUrl": "cloudfile://certificate_xxx_thumb",
+  "generatedBy": "cloudFunction",  // 后端异步生成
+  "generatedAt": 1711632000000,
+  "shared": false,  // 是否已分享
+  "saved": false  // 是否已保存
+}
+
+// ========================================
+// 5. 交易表 (transactions)
+// ========================================
+{
+  "_id": "自动生成",
+  "_openid": "相关用户 OpenID",
+  "transactionId": "TXN20260328001",
+  "orderId": "ORD20260328001",
+  "type": "payment | division | withdrawal | refund",
+  "amount": 299.00,
+  "platformFee": 29.90,  // 平台服务费（10%）
+  "executorIncome": 269.10,  // 执行者收入
+  "parties": [
+    {
+      "userId": "prayer_openid",
+      "role": "prayer",
+      "amount": -299.00,  // 支出
+      "status": "paid"
+    },
+    {
+      "userId": "executor_openid",
+      "role": "executor",
+      "amount": 269.10,  // 收入
+      "status": "pending | withdrawable | withdrawn"
+    },
+    {
+      "userId": "platform",
+      "role": "platform",
+      "amount": 29.90,  // 平台收入
+      "status": "settled"
+    }
+  ],
+  "division": {
+    "rule": "90_10",  // 分账规则：执行者 90%，平台 10%
+    "executedAt": 1711632000000,
+    "status": "pending | completed | failed"
+  },
+  "withdrawal": {
+    "method": "wechat_wallet",
+    "account": "138****1234",  // 脱敏
+    "executedAt": null,
+    "status": "pending | processing | completed | failed"
+  },
+  "status": "pending | completed | failed | refunded",
+  "createdAt": 1711627200000,
+  "completedAt": null
+}
+
+// ========================================
+// 6. 审计日志表 (audit_logs)
+// ========================================
+{
+  "_id": "自动生成",
+  "_openid": "管理员 OpenID",
+  "operatorId": "admin_openid",
+  "operatorName": "管理员姓名",
+  "operationType": "qualify_approve | qualify_reject | arbitrate | division_config | data_export",
+  "targetType": "user | order | evidence | transaction",
+  "targetId": "目标 ID",
+  "action": "approve | reject | modify | delete | export",
+  "beforeData": {},  // 操作前数据（脱敏）
+  "afterData": {},  // 操作后数据（脱敏）
+  "reason": "资质审核通过",  // 操作原因
+  "ip": "192.168.1.1",
+  "userAgent": "Mozilla/5.0...",
+  "secondaryVerify": {
+    "method": "password | sms",  // 二次验证方式
+    "verifiedAt": 1711627200000,
+    "verifiedBy": "system"
+  },
+  "timestamp": 1711627200000
+}
