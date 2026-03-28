@@ -1,0 +1,11 @@
+{
+  "name": "synthesizeWatermark",
+  "version": "1.0.0",
+  "description": "视频水印合成云函数（GPS+ 时间 + 任务 ID）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  },
+  "author": "ClearSpring Team",
+  "license": "MIT"
+}
