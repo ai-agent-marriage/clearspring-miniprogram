@@ -1,104 +1,163 @@
-/* 清如 ClearSpring - 全局样式 */
+/* ========================================
+   清如 ClearSpring - 全局样式变量
+   基于 V4.0 禅意美学规范
+   ======================================== */
+
+Page {
+  /* ========== 色彩系统 ========== */
+  
+  /* 祈福者端 - 禅意金系 */
+  --bg-xuan: #EFEEE9;       /* 宣纸底 - 全局基底 */
+  --bg-xuan-light: #F4F4EF; /* 宣纸浅 - 区域区分 */
+  --gold-main: #D4B87B;     /* 禅意金主 - 核心元素 */
+  --gold-dim: #6E5E00;      /* 暖沙金暗 - 次主色 */
+  
+  /* 执行者端 - 岱绿系 */
+  --green-main: #4A5D4E;    /* 岱绿主 - 功能色 */
+  --green-dim: #334537;     /* 岱绿暗 - 数字/强调 */
+  
+  /* 全局文字色 */
+  --text-main: #434843;     /* 墨灰主 - 正文 */
+  --text-dim: #727772;      /* 浅墨次 - 辅助文字 */
+  --text-light: #A0A5A0;    /* 极浅墨 - 占位符 */
+  
+  /* 状态色（低饱和） */
+  --success: #008A17;       /* 成功 - 岱绿系 */
+  --warning: #FF9A44;       /* 警示 - 低饱和橙 */
+  --error-soft: #BA1A1A;    /* 错误 - 柔化红 */
+  --info: #4A6FA5;          /* 信息 - 低饱和蓝 */
+  
+  /* ========== 间距系统 ========== */
+  --spacing-1: 12rpx;
+  --spacing-2: 24rpx;
+  --spacing-3: 48rpx;
+  --spacing-4: 96rpx;
+  
+  /* ========== 圆角系统 ========== */
+  --radius-sm: 12rpx;       /* 小组件 */
+  --radius-md: 24rpx;       /* 标准组件（鹅卵石） */
+  --radius-lg: 32rpx;       /* 大卡片 */
+  --radius-full: 50%;       /* 圆形 */
+  
+  /* ========== 动效系统 ========== */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 300ms ease-out;
+  --transition-slow: 500ms ease-out;
+}
+
+/* ========== 全局基础样式 ========== */
 
 page {
-  background-color: #f5f5f5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
-    sans-serif;
+  background-color: var(--bg-xuan);
+  font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
   font-size: 28rpx;
   line-height: 1.5;
-  color: #333;
+  color: var(--text-main);
   box-sizing: border-box;
 }
 
-/* 通用容器 */
+/* 容器 */
 .container {
-  padding: 24rpx;
+  padding: var(--spacing-2);
   box-sizing: border-box;
 }
 
-/* 卡片样式 */
+/* 卡片 - 无框线，色调渐变区分 */
 .card {
-  background-color: #fff;
-  border-radius: 16rpx;
-  padding: 24rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
 }
 
-/* 按钮 */
+/* 液态玻璃效果 - 浮层元素 */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-md);
+}
+
+/* 按钮 - 最小热区 88rpx */
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 88rpx;
-  border-radius: 44rpx;
+  min-height: 88rpx;
+  border-radius: var(--radius-md);
   font-size: 32rpx;
   font-weight: 500;
+  transition: all var(--transition-base);
 }
 
+/* 按钮四态 */
 .btn-primary {
-  background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
   color: #fff;
 }
 
-.btn-secondary {
-  background-color: #f5f5f5;
-  color: #333;
+.btn-primary:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+.btn-primary.loading {
+  background: var(--bg-xuan-light);
+  color: var(--text-dim);
+}
+
+.btn-primary.disabled {
+  opacity: 0.3;
+}
+
+/* 执行者端按钮 */
+.btn-green {
+  background: linear-gradient(135deg, var(--green-main) 0%, var(--green-dim) 100%);
+  color: #fff;
 }
 
 /* 文本样式 */
-.text-center {
-  text-align: center;
-}
-
-.text-gray {
-  color: #999;
-}
-
-.text-primary {
-  color: #07c160;
-}
+.text-center { text-align: center; }
+.text-gray { color: var(--text-dim); }
+.text-gold { color: var(--gold-main); }
+.text-green { color: var(--green-main); }
+.text-error { color: var(--error-soft); }
 
 /* Flex 布局 */
-.flex {
-  display: flex;
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-column { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
+
+/* 间距工具类 */
+.mt-1 { margin-top: var(--spacing-1); }
+.mt-2 { margin-top: var(--spacing-2); }
+.mt-3 { margin-top: var(--spacing-3); }
+.mb-1 { margin-bottom: var(--spacing-1); }
+.mb-2 { margin-bottom: var(--spacing-2); }
+.mb-3 { margin-bottom: var(--spacing-3); }
+
+/* ========== 禅意布局 ========== */
+
+/* 高留白区域 */
+.zen-space {
+  padding: var(--spacing-3);
 }
 
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 非对称布局 */
+.zen-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-2);
 }
 
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-/* 间距 */
-.mt-2 {
-  margin-top: 16rpx;
-}
-
-.mt-4 {
-  margin-top: 32rpx;
-}
-
-.mb-2 {
-  margin-bottom: 16rpx;
-}
-
-.mb-4 {
-  margin-bottom: 32rpx;
+/* 金箔渐变文字（Canvas 生成替代方案） */
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
 }
