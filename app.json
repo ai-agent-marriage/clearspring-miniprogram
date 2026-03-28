@@ -3,7 +3,16 @@
     "pages/index/index",
     "pages/service/service",
     "pages/order/order",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/executor-qualification/executor-qualification",
+    "pages/executor-status/executor-status",
+    "pages/executor-home/executor-home",
+    "pages/executor-order-hall/executor-order-hall",
+    "pages/executor-assistant/executor-assistant",
+    "pages/executor-camera/executor-camera",
+    "pages/executor-evidence/executor-evidence",
+    "pages/executor-income/executor-income",
+    "pages/executor-profile/executor-profile"
   ],
   "window": {
     "backgroundTextStyle": "light",
