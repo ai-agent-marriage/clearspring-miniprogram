@@ -1,0 +1,117 @@
+<!--pages/merit-forest/merit-forest.wxml-->
+<view class="container">
+  <!-- 顶部功德统计 -->
+  <view class="merit-header">
+    <view class="merit-stats">
+      <view class="stat-item">
+        <text class="stat-value gold-gradient-text">{{totalMerit}}</text>
+        <text class="stat-label">累计功德</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value gold-gradient-text">{{totalCount}}</text>
+        <text class="stat-label">放生次数</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value gold-gradient-text">{{totalDays}}</text>
+        <text class="stat-label">坚持天数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 证书墙标题 -->
+  <view class="section-header">
+    <text class="section-title">功德证书</text>
+    <text class="section-subtitle">每一次善行，都值得铭记</text>
+  </view>
+
+  <!-- 证书墙瀑布流 -->
+  <view class="certificate-wall">
+    <view class="waterfall-column" wx:for="{{2}}" wx:key="index" wx:for-index="columnIndex">
+      <view 
+        class="certificate-card glass" 
+        wx:for="{{columns[columnIndex]}}" 
+        wx:key="id"
+        wx:for-item="cert"
+        bindtap="onCertificateTap"
+        data-cert="{{cert}}"
+      >
+        <view class="cert-header">
+          <text class="cert-title">功德证书</text>
+          <text class="cert-number">NO.{{cert.number}}</text>
+        </view>
+        <view class="cert-content">
+          <text class="cert-text">兹证明 {{cert.userName}} 于 {{cert.date}} 参与放生活动</text>
+          <text class="cert-text highlight">放生数量：{{cert.count}}</text>
+          <text class="cert-text">功德无量，善行永存</text>
+        </view>
+        <view class="cert-footer">
+          <text class="cert-seal">清如印</text>
+          <text class="cert-date">{{cert.issueDate}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史放生记录 -->
+  <view class="section-header">
+    <text class="section-title">放生记录</text>
+    <text class="section-subtitle">善行足迹</text>
+  </view>
+
+  <view class="history-list">
+    <view 
+      class="history-item card" 
+      wx:for="{{historyList}}" 
+      wx:key="id"
+      bindtap="onHistoryTap"
+      data-item="{{item}}"
+    >
+      <view class="history-date">
+        <text class="date-day">{{item.day}}</text>
+        <text class="date-month">{{item.month}}</text>
+      </view>
+      <view class="history-content">
+        <view class="history-title">{{item.title}}</text>
+        <text class="history-location">{{item.location}}</text>
+        <text class="history-count">放生数量：{{item.count}}</text>
+      </view>
+      <view class="history-action">
+        <text class="action-icon">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 证书预览弹窗 -->
+  <view class="modal" wx:if="{{showModal}}" bindtap="hideModal">
+    <view class="modal-content glass" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">功德证书</text>
+        <text class="modal-close" bindtap="hideModal">✕</text>
+      </view>
+      <view class="modal-body">
+        <view class="preview-certificate">
+          <view class="preview-header">
+            <text class="preview-title">功德证书</text>
+            <text class="preview-number">NO.{{currentCert.number}}</text>
+          </view>
+          <view class="preview-content">
+            <text class="preview-text">兹证明</text>
+            <text class="preview-name">{{currentCert.userName}}</text>
+            <text class="preview-text">于 {{currentCert.date}} 参与放生活动</text>
+            <text class="preview-count">放生数量：{{currentCert.count}}</text>
+            <text class="preview-blessing">功德无量 善行永存</text>
+          </view>
+          <view class="preview-footer">
+            <view class="preview-seal">清如印</view>
+            <text class="preview-date">{{currentCert.issueDate}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <button class="btn btn-primary" bindtap="shareCertificate">分享证书</button>
+      </view>
+    </view>
+  </view>
+</view>

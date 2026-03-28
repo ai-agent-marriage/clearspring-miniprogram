@@ -1,0 +1,111 @@
+<!--pages/wiki/wiki.wxml-->
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="wiki-header">
+    <text class="wiki-title">科普百科</text>
+    <text class="wiki-subtitle">科学放生，护生护心</text>
+  </view>
+
+  <!-- 物种正面清单 -->
+  <view class="section">
+    <view class="section-title-wrapper">
+      <text class="section-title">物种正面清单</text>
+      <text class="section-badge">推荐</text>
+    </view>
+    
+    <view class="species-list">
+      <view 
+        class="species-item card" 
+        wx:for="{{positiveList}}" 
+        wx:key="id"
+        bindtap="onSpeciesTap"
+        data-species="{{item}}"
+      >
+        <image class="species-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="species-info">
+          <view class="species-header">
+            <text class="species-name">{{item.name}}</text>
+            <text class="species-latin">{{item.latin}}</text>
+          </view>
+          <text class="species-desc">{{item.description}}</text>
+          <view class="species-tags">
+            <text class="tag tag-primary">{{item.category}}</text>
+            <text class="tag" wx:if="{{item.season}}">适放季节：{{item.season}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 放生禁忌 -->
+  <view class="section">
+    <view class="section-title-wrapper">
+      <text class="section-title">放生禁忌</text>
+      <text class="section-badge warning">注意</text>
+    </view>
+
+    <view class="taboo-list">
+      <view 
+        class="taboo-item card" 
+        wx:for="{{tabooList}}" 
+        wx:key="id"
+      >
+        <view class="taboo-icon">⚠️</view>
+        <view class="taboo-content">
+          <text class="taboo-title">{{item.title}}</text>
+          <text class="taboo-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐水域 -->
+  <view class="section">
+    <view class="section-title-wrapper">
+      <text class="section-title">推荐水域</text>
+      <text class="section-badge success">安全</text>
+    </view>
+
+    <view class="water-list">
+      <view 
+        class="water-item card" 
+        wx:for="{{waterList}}" 
+        wx:key="id"
+        bindtap="onWaterTap"
+        data-water="{{item}}"
+      >
+        <view class="water-header">
+          <text class="water-name">{{item.name}}</text>
+          <text class="water-distance">{{item.distance}}</text>
+        </view>
+        <text class="water-desc">{{item.description}}</text>
+        <view class="water-features">
+          <text class="feature" wx:for="{{item.features}}" wx:key="*this" wx:for-item="feature">{{feature}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 生态说明 -->
+  <view class="section">
+    <view class="section-title-wrapper">
+      <text class="section-title">生态说明</text>
+    </view>
+
+    <view class="ecology-card card">
+      <view class="ecology-content">
+        <text class="ecology-title">为什么要科学放生？</text>
+        <text class="ecology-text">不当放生可能导致外来物种入侵、破坏本地生态系统、造成动物死亡等严重后果。请选择本地原生物种，在合适的水域和季节进行放生。</text>
+      </view>
+      <image class="ecology-illustration" src="/images/wiki/ecology.png" mode="widthFix"></image>
+    </view>
+
+    <view class="ecology-card card">
+      <view class="ecology-content">
+        <text class="ecology-title">放生的意义</text>
+        <text class="ecology-text">放生不仅是宗教仪式，更是对生命的尊重和对生态环境的保护。每一次如法的放生，都是在积累福德，也是在为地球生态做出贡献。</text>
+      </view>
+      <image class="ecology-illustration" src="/images/wiki/meaning.png" mode="widthFix"></image>
+    </view>
+  </view>
+</view>
