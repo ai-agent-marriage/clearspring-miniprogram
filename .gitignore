@@ -1,0 +1,21 @@
+# 微信小程序忽略文件
+node_modules/
+npm/
+*.log
+.DS_Store
+Thumbs.db
+
+# 开发工具配置
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# 编译输出
+dist/
+build/

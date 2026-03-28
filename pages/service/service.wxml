@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">服务列表</view>
+    <view class="service-list">
+      <view class="service-card" wx:for="{{services}}" wx:key="id" bindtap="selectService">
+        <view class="service-info">
+          <text class="service-name">{{item.name}}</text>
+          <text class="service-desc">{{item.description}}</text>
+        </view>
+        <view class="service-action">
+          <text class="btn-text">预约</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

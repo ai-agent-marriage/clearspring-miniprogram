@@ -1,0 +1,29 @@
+<view class="container">
+  <!-- 欢迎卡片 -->
+  <view class="card welcome-card">
+    <view class="welcome-title">清如 ClearSpring</view>
+    <view class="welcome-subtitle">专业服务，值得信赖</view>
+  </view>
+
+  <!-- 服务分类 -->
+  <view class="card">
+    <view class="section-title">热门服务</view>
+    <view class="service-grid">
+      <view class="service-item" wx:for="{{services}}" wx:key="id" bindtap="goToService">
+        <image class="service-icon" src="{{item.icon}}" mode="aspectFill"></image>
+        <text class="service-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 公告区域 -->
+  <view class="card">
+    <view class="section-title">最新公告</view>
+    <view class="notice-list">
+      <view class="notice-item" wx:for="{{notices}}" wx:key="id">
+        <text class="notice-text">{{item.title}}</text>
+        <text class="notice-date">{{item.date}}</text>
+      </view>
+    </view>
+  </view>
+</view>
