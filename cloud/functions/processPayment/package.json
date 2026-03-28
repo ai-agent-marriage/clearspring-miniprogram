@@ -1,0 +1,11 @@
+{
+  "name": "processPayment",
+  "version": "1.0.0",
+  "description": "支付分账云函数（90% 执行者/10% 平台）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  },
+  "author": "ClearSpring Team",
+  "license": "MIT"
+}

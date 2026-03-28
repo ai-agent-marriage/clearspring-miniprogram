@@ -1,0 +1,11 @@
+{
+  "name": "generateCertificate",
+  "version": "1.0.0",
+  "description": "功德证书生成云函数（Canvas 异步）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  },
+  "author": "ClearSpring Team",
+  "license": "MIT"
+}
