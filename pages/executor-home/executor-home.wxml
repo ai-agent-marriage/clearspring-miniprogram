@@ -1,0 +1,94 @@
+<!-- 清如 ClearSpring - 执行者首页 -->
+<view class="container">
+  <!-- 顶部状态栏 -->
+  <view class="header glass">
+    <view class="header-left">
+      <text class="greeting">你好，{{executorName}}</text>
+      <text class="status-tag {{qualificationStatus}}">{{statusText}}</text>
+    </view>
+    <view class="header-right" bindtap="onNotification">
+      <text class="notification-icon">🔔</text>
+      <view class="notification-dot" wx:if="{{hasUnreadNotice}}"></view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-actions">
+    <view class="action-card glass" bindtap="onEnterOrderHall">
+      <view class="action-icon">📋</view>
+      <text class="action-text">抢单大厅</text>
+      <text class="action-desc">查看可接订单</text>
+    </view>
+    
+    <view class="action-card glass" bindtap="onEnterIncome">
+      <view class="action-icon">💰</view>
+      <text class="action-text">我的收入</text>
+      <text class="action-desc">查看收益明细</text>
+    </view>
+  </view>
+
+  <!-- 今日数据 -->
+  <view class="stats-section glass">
+    <view class="stats-title">今日数据</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.completed}}</text>
+        <text class="stat-label">已完成</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.earning}}</text>
+        <text class="stat-label">今日收益 (元)</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.hours}}</text>
+        <text class="stat-label">服务时长 (h)</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.rating}}</text>
+        <text class="stat-label">平均评分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 进行中任务 -->
+  <view class="ongoing-section">
+    <view class="section-header">
+      <text class="section-title">进行中任务</text>
+      <text class="section-more" bindtap="onViewAllOngoing">查看全部 ></text>
+    </view>
+    
+    <view class="ongoing-list">
+      <view wx:if="{{ongoingTasks.length === 0}}" class="empty-state">
+        <text class="empty-icon">📭</text>
+        <text class="empty-text">暂无进行中任务</text>
+        <button class="btn btn-green btn-go-order" bindtap="onEnterOrderHall">去抢单</button>
+      </view>
+      
+      <view wx:for="{{ongoingTasks}}" wx:key="id" class="task-card glass" bindtap="onTaskDetail" data-id="{{item.id}}">
+        <view class="task-header">
+          <text class="task-title">{{item.title}}</text>
+          <text class="task-status {{item.status}}">{{item.statusText}}</text>
+        </view>
+        
+        <view class="task-info">
+          <text class="task-location">📍 {{item.location}}</text>
+          <text class="task-time">⏰ {{item.startTime}}</text>
+        </view>
+        
+        <view class="task-footer">
+          <text class="task-price">¥{{item.price}}</text>
+          <text class="task-deadline">剩余 {{item.timeLeft}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 公告区域 -->
+  <view class="notice-section glass" wx:if="{{notice}}">
+    <view class="notice-header">
+      <text class="notice-icon">📢</text>
+      <text class="notice-title">平台公告</text>
+    </view>
+    <text class="notice-content">{{notice}}</text>
+  </view>
+</view>

@@ -1,0 +1,87 @@
+<!-- 清如 ClearSpring - 抢单大厅 -->
+<view class="container">
+  <!-- 筛选栏 -->
+  <view class="filter-bar glass">
+    <view class="filter-item" bindtap="onFilterType">
+      <text class="filter-text">{{filterType}}</text>
+      <text class="filter-arrow">▼</text>
+    </view>
+    <view class="filter-item" bindtap="onFilterDistance">
+      <text class="filter-text">{{filterDistance}}</text>
+      <text class="filter-arrow">▼</text>
+    </view>
+    <view class="filter-item" bindtap="onFilterPrice">
+      <text class="filter-text">{{filterPrice}}</text>
+      <text class="filter-arrow">▼</text>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view wx:if="{{orders.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无可接订单</text>
+      <text class="empty-hint">换个筛选条件试试吧</text>
+      <button class="btn btn-green btn-refresh" bindtap="onRefresh">刷新列表</button>
+    </view>
+
+    <view wx:for="{{orders}}" wx:key="id" class="order-card glass {{item.isUrgent ? 'urgent' : ''}}" bindtap="onOrderDetail" data-id="{{item.id}}">
+      <!-- 紧急标签 -->
+      <view wx:if="{{item.isUrgent}}" class="urgent-tag">急</view>
+      
+      <view class="order-header">
+        <view class="order-title-section">
+          <text class="order-title">{{item.title}}</text>
+          <text class="order-type">{{item.type}}</text>
+        </view>
+        <text class="order-price">¥{{item.price}}</text>
+      </view>
+
+      <view class="order-body">
+        <view class="order-info-row">
+          <text class="info-icon">📍</text>
+          <text class="info-text">{{item.location}}</text>
+          <text class="info-distance">{{item.distance}}</text>
+        </view>
+        
+        <view class="order-info-row">
+          <text class="info-icon">⏰</text>
+          <text class="info-text">服务时间：{{item.serviceTime}}</text>
+        </view>
+        
+        <view class="order-info-row">
+          <text class="info-icon">👤</text>
+          <text class="info-text">需求者：{{item.requester}}</text>
+        </view>
+        
+        <view class="order-info-row">
+          <text class="info-icon">📝</text>
+          <text class="info-text">{{item.description}}</text>
+        </view>
+      </view>
+
+      <view class="order-footer">
+        <text class="order-time">发布于 {{item.publishTime}}</text>
+        <button 
+          class="btn btn-green btn-grab {{item.grabbing ? 'grabbing' : ''}}"
+          disabled="{{item.grabbing || item.grabbed}}"
+          catchtap="onGrabOrder"
+          data-id="{{item.id}}"
+        >
+          {{item.grabbing ? '抢单中...' : (item.grabbed ? '已抢单' : '一键抢单')}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text class="loading-icon">⏳</text>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 没有更多 -->
+  <view wx:if="{{noMore}}" class="no-more-state">
+    <text class="no-more-text">— 没有更多订单了 —</text>
+  </view>
+</view>
